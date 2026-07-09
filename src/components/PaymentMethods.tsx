@@ -2,14 +2,14 @@ import { payments } from "@/lib/data";
 
 export default function PaymentMethods() {
   return (
-    <section className="px-6 py-16 md:py-24">
+    <section id="payment-methods" className="scroll-mt-36 px-6 py-16 md:py-24">
       <div className="mx-auto max-w-5xl text-center">
         <h2 className="text-3xl md:text-4xl font-black text-ink">
-          Pay with your favorite crypto — and more
+          Payment method UI examples
         </h2>
         <p className="mt-3 text-muted text-base md:text-lg">
-          Choose from dozens of cryptocurrencies and everyday payment methods
-          at checkout.
+          Static chips representing common crypto and card payment methods.
+          No payment processing is implemented.
         </p>
 
         <div className="mt-10 flex flex-wrap justify-center gap-3">

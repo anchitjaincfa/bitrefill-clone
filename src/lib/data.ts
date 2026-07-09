@@ -1,4 +1,4 @@
-// Shared data for the Bitrefill-style homepage.
+// Shared data for the crypto-refill demo homepage.
 // Brand tiles are recreated with CSS (background color + wordmark), not copied assets.
 
 export type Product = {
@@ -23,6 +23,15 @@ export type Category = {
   href: string;
   products: Product[];
 };
+
+export function productAnchor(name: string, sectionId = "catalog") {
+  return `product-${name
+    .concat("-", sectionId)
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/(^-|-$)/g, "")}`;
+}
 
 export const recommended: Product[] = [
   { name: "Digital Prepaid Visa", label: "VISA", range: "$20 - $1000", rating: 4.8, bg: "#1a1f71", fg: "#ffffff", labelClass: "italic font-black tracking-wide" },
@@ -110,6 +119,20 @@ export const phoneRefills: Product[] = [
   { name: "Cricket", label: "cricket", bg: "#66cc33", fg: "#ffffff", labelClass: "font-bold lowercase" },
 ];
 
+export const esims: Product[] = [
+  { name: "Global eSIM", label: "GLOBAL", range: "1GB - 20GB", rating: 4.7, bg: "#111827", fg: "#ffffff", labelClass: "font-extrabold tracking-wide" },
+  { name: "USA eSIM", label: "USA", range: "3GB - 30GB", rating: 4.8, bg: "#2563eb", fg: "#ffffff", labelClass: "font-extrabold" },
+  { name: "Europe eSIM", label: "EUROPE", range: "1GB - 50GB", rating: 4.7, bg: "#0f766e", fg: "#ffffff", labelClass: "font-bold tracking-wide" },
+  { name: "Asia eSIM", label: "ASIA", range: "1GB - 20GB", rating: 4.6, bg: "#7c2d12", fg: "#ffffff", labelClass: "font-bold tracking-wide" },
+];
+
+export const paymentCards: Product[] = [
+  { name: "Digital Prepaid Visa", label: "VISA", range: "$20 - $1000", rating: 4.8, bg: "#1a1f71", fg: "#ffffff", labelClass: "italic font-black tracking-wide" },
+  { name: "Virtual Prepaid Mastercard", label: "", range: "$20 - $500", rating: 4.8, bg: "radial-gradient(circle at 50% 45%,#3a1b17,#0e0708)", fg: "#ffffff" },
+  { name: "Travel Rewards Card", label: "TRAVEL", range: "$25 - $500", rating: 4.6, bg: "#0e7490", fg: "#ffffff", labelClass: "font-black tracking-wide" },
+  { name: "Shopping Rewards Card", label: "REWARDS", range: "$25 - $500", rating: 4.6, bg: "#be123c", fg: "#ffffff", labelClass: "font-black tracking-wide" },
+];
+
 export type NavItem = { label: string; href: string };
 
 export const navItems: NavItem[] = [
@@ -117,14 +140,15 @@ export const navItems: NavItem[] = [
   { label: "Phone Refills", href: "#phone-refills" },
   { label: "eSIMs", href: "#esims" },
   { label: "Payment Cards", href: "#payment-cards" },
+  { label: "FAQ", href: "#faq" },
 ];
 
 export type Step = { title: string; body: string; icon: string };
 
 export const steps: Step[] = [
-  { title: "Pick a product", body: "Choose from 8,000+ gift cards, mobile refills, eSIMs and more.", icon: "search" },
-  { title: "Pay with crypto", body: "Pay with Bitcoin, Lightning, Ethereum, USDT, USDC and other coins.", icon: "wallet" },
-  { title: "Receive instantly", body: "Your code is delivered to your email and account in seconds.", icon: "bolt" },
+  { title: "Browse the catalog", body: "Explore sample gift cards, refills, eSIMs and payment-card layouts.", icon: "search" },
+  { title: "Review payment UI", body: "See static examples of crypto and card payment methods in a checkout-style surface.", icon: "wallet" },
+  { title: "Use as a reference", body: "Study the responsive layout and component structure without processing real orders.", icon: "bolt" },
 ];
 
 export type Payment = { name: string; symbol: string; color: string };
@@ -149,36 +173,36 @@ export type Faq = { q: string; a: string };
 
 export const faqs: Faq[] = [
   {
-    q: "What is Bitrefill?",
-    a: "Bitrefill lets you live on crypto by buying gift cards, mobile refills, eSIMs and paying bills with Bitcoin, Lightning, Ethereum and many other cryptocurrencies. We have 8,000+ products available across 180+ countries.",
+    q: "What is Refill Demo?",
+    a: "Refill Demo is an educational UI clone inspired by crypto gift-card storefronts. It is not affiliated with Bitrefill and does not process purchases, payments, accounts or support requests.",
   },
   {
-    q: "Which brands can I buy gift cards for?",
-    a: "You can buy gift cards for thousands of top brands including Amazon, Apple, Uber, Walmart, Airbnb, DoorDash, Google Play, PlayStation, Xbox and many more. Just search for your favorite store.",
+    q: "Can I buy gift cards here?",
+    a: "No. Product names, prices, ratings, cashback badges and payment methods are static sample content for portfolio and learning purposes only.",
   },
   {
-    q: "Which cryptocurrencies do you support?",
-    a: "We accept Bitcoin, Lightning Network, Ethereum, USDT, USDC, Solana, BASE, Polygon and more. You can also pay with Apple Pay, Google Pay and select debit/credit cards.",
+    q: "Why are real brands shown?",
+    a: "The catalog uses recreated text tiles to demonstrate how a marketplace UI behaves with recognizable product categories. No official logos, proprietary assets or brand integrations are included.",
   },
   {
-    q: "Do I need an account or a specific wallet?",
-    a: "No special wallet is required — Bitrefill works with any standard crypto wallet. You can check out as a guest, though creating an account unlocks order history, rewards and faster checkout.",
+    q: "Does search work?",
+    a: "Yes. Search filters the static demo catalog and jumps to matching product tiles on this page.",
   },
   {
-    q: "How does the payment process work?",
-    a: "Pick a product, choose your denomination, and pay the invoice with your crypto wallet. Once the transaction is confirmed your code is delivered instantly to your email and account.",
+    q: "Does the site store data?",
+    a: "No. There is no backend, database, authentication, cart, checkout or analytics code in this project.",
   },
   {
-    q: "How fast is delivery?",
-    a: "Most digital products are delivered within seconds of your payment confirming. Lightning Network payments are near-instant.",
+    q: "Can I reuse this project?",
+    a: "Yes, for the original code in this repo. Brand names and marks remain the property of their respective owners.",
   },
   {
-    q: "Do you offer cashback?",
-    a: "Yes — many brands offer cashback and discounts when you pay with crypto. Look for the cashback badge on eligible products.",
+    q: "Why does the UI look commerce-oriented?",
+    a: "The goal is to demonstrate marketplace layout, filtering, product tiles, payment chips and responsive sections without implementing a real commerce system.",
   },
   {
-    q: "How do I get support?",
-    a: "Our support team is available via the Help center and live chat. Visit the Help section in the header or contact us directly for order assistance.",
+    q: "Where is the real service?",
+    a: "This project is independent. Visit the official provider websites directly for real purchases or account support.",
   },
 ];
 
@@ -186,40 +210,61 @@ export type FooterColumn = { title: string; links: NavItem[] };
 
 export const footerColumns: FooterColumn[] = [
   {
-    title: "Live on crypto",
+    title: "Demo sections",
     links: [
       { label: "Gift Cards", href: "#gift-cards" },
       { label: "Phone Refills", href: "#phone-refills" },
       { label: "eSIMs", href: "#esims" },
-      { label: "Bitrefill for Agents", href: "#agents" },
+      { label: "Payment Cards", href: "#payment-cards" },
     ],
   },
   {
-    title: "Support",
+    title: "Project",
     links: [
-      { label: "Help", href: "#help" },
-      { label: "Contact Us", href: "#contact" },
-      { label: "Product Request", href: "#product-request" },
-      { label: "Purchase Limits", href: "#limits" },
-      { label: "Refund Policy", href: "#refund" },
+      { label: "About the Demo", href: "#about-demo" },
+      { label: "How It Works", href: "#how-it-works" },
+      { label: "Payment Methods", href: "#payment-methods" },
+      { label: "FAQ", href: "#faq" },
     ],
   },
   {
-    title: "Company",
+    title: "Catalog",
     links: [
-      { label: "Careers", href: "#careers" },
-      { label: "Press", href: "#press" },
-      { label: "Blog", href: "#blog" },
-      { label: "Reviews", href: "#reviews" },
+      { label: "Recommended", href: "#recommended" },
+      { label: "Gaming", href: "#gaming" },
+      { label: "Food & Groceries", href: "#food" },
+      { label: "Rewards & Discounts", href: "#rewards" },
     ],
   },
   {
     title: "Resources",
     links: [
-      { label: "Integrations & API", href: "#api" },
-      { label: "Referral Program", href: "#referral" },
-      { label: "Influencer & Affiliate", href: "#affiliate" },
-      { label: "Crypto Spending Guides", href: "#guides" },
+      { label: "Disclaimer", href: "#disclaimer" },
+      { label: "App Preview", href: "#app-preview" },
+      { label: "Travel", href: "#travel" },
+      { label: "Payment Cards", href: "#payment-cards" },
     ],
   },
 ];
+
+const catalogSections = [
+  { sectionId: "recommended", sectionTitle: "Recommended", products: recommended },
+  { sectionId: "gift-cards", sectionTitle: "Popular gift cards", products: popular },
+  ...categories.map((category) => ({
+    sectionId: category.id,
+    sectionTitle: category.title,
+    products: category.products,
+  })),
+  { sectionId: "esims", sectionTitle: "eSIMs", products: esims },
+  { sectionId: "payment-cards", sectionTitle: "Payment Cards", products: paymentCards },
+  { sectionId: "phone-refills", sectionTitle: "Phone Refills", products: phoneRefills },
+];
+
+export const catalogSearchItems = catalogSections.flatMap((section) =>
+  section.products.map((product) => ({
+    product,
+    sectionId: section.sectionId,
+    sectionTitle: section.sectionTitle,
+    href: `#${productAnchor(product.name, section.sectionId)}`,
+  })),
+);

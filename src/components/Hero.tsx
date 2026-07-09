@@ -6,13 +6,13 @@ export default function Hero() {
           {/* Headline + CTA */}
           <div className="mb-10 md:mb-14">
             <h1 className="max-w-2xl text-4xl font-black leading-tight tracking-tight text-ink sm:text-5xl md:text-6xl">
-              Spend crypto, save big.
+              Study a crypto storefront UI.
             </h1>
             <a
-              href="#rewards"
+              href="#about-demo"
               className="mt-6 inline-flex items-center justify-center rounded-full bg-brand px-6 py-3 font-semibold text-white transition-colors hover:bg-brand-dark"
             >
-              Cashback offerings
+              Review demo scope
             </a>
           </div>
 

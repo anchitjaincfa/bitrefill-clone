@@ -1,24 +1,25 @@
-# Bitrefill Clone
+# Refill Demo
 
-A pixel-faithful, front-end clone of the [Bitrefill](https://www.bitrefill.com/us/en/) homepage — built from scratch as a demonstration project.
+An educational, front-end crypto storefront UI demo inspired by gift-card and mobile-refill marketplaces.
 
-> ⚠️ This is an **educational UI clone** for learning/portfolio purposes. It is **not affiliated with, endorsed by, or connected to Bitrefill**. All brand names and marks belong to their respective owners. No proprietary images or assets were copied — every logo/tile is recreated with CSS, inline SVG, and emoji.
+> ⚠️ This is an **educational UI clone** for learning/portfolio purposes. It is **not affiliated with, endorsed by, or connected to Bitrefill**. No purchases, payments, accounts, support, order delivery, refunds, or real integrations are implemented. Brand names and marks belong to their respective owners. No proprietary images or assets were copied — every logo/tile is recreated with CSS, inline SVG, and emoji.
 
 ## ✨ What's inside
 
-A single, fully responsive marketing homepage replicating Bitrefill's layout:
+A single, fully responsive static storefront demo:
 
-- **Sticky header** — promo strip, logo, search, help / currency / balance / cart, nav row, mobile hamburger menu
-- **Hero** — "Spend crypto, save big." with cashback CTA and product tiles
+- **Sticky header** — visible demo disclaimer, logo, working static catalog search, nav row, mobile hamburger menu
+- **Hero** — educational UI positioning with recreated product tiles
 - **Recommended & Popular gift cards** — responsive product-card grids with ratings
 - **Category rails** — Gaming, Food & Groceries, Travel, Rewards & Discounts (horizontal scroll on mobile)
 - **How it works** — 3-step explainer
-- **Mobile app banner** — CSS phone mockup with app-store buttons
+- **Mobile app preview** — CSS phone mockup with static badges
+- **eSIMs & Payment Cards** — dedicated sections so nav targets resolve
 - **Phone refills** — carrier tiles
-- **Trust band** — Trustpilot rating, "Trusted since 2014", daily payments stat
+- **Demo scope band** — clearly states static catalog, no checkout, no affiliation
 - **Payment methods** — Bitcoin, Lightning, Ethereum, USDC/USDT, Solana, BASE, Polygon, Apple/Google Pay, Visa, Mastercard
 - **FAQ accordion** — accessible, keyboard-friendly
-- **Footer** — 4 link columns, legal, socials
+- **Footer** — same-page project/catalog links with no fake social/legal destinations
 
 ## 🧱 Tech stack
 
@@ -28,7 +29,7 @@ A single, fully responsive marketing homepage replicating Bitrefill's layout:
 - `next/font` (Montserrat)
 - Deployed on [Vercel](https://vercel.com/)
 
-All content lives in a single typed data module (`src/lib/data.ts`), so the UI is fully data-driven.
+All catalog and navigation content lives in a single typed data module (`src/lib/data.ts`), so the UI is fully data-driven.
 
 ## 🚀 Getting started
 

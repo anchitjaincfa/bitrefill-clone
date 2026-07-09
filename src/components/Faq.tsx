@@ -11,7 +11,7 @@ export default function Faq() {
   };
 
   return (
-    <section className="py-16 md:py-24 px-6">
+    <section id="faq" className="scroll-mt-36 py-16 md:py-24 px-6">
       <h2 className="text-3xl md:text-4xl font-black text-ink text-center">
         Frequently asked questions
       </h2>
@@ -53,6 +53,8 @@ export default function Faq() {
                 id={panelId}
                 role="region"
                 aria-labelledby={buttonId}
+                aria-hidden={!isOpen}
+                hidden={!isOpen}
                 className="grid transition-all duration-300 ease-in-out"
                 style={{
                   gridTemplateRows: isOpen ? "1fr" : "0fr",

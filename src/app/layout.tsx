@@ -10,14 +10,14 @@ const montserrat = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Buy Gift Cards & Top Up Airtime with Bitcoin or Crypto - Bitrefill",
+  title: "Refill Demo — Educational Crypto Storefront UI",
   description:
-    "Buy gift cards, mobile refills, eSIMs and pay bills with Bitcoin, Lightning, Ethereum, USDT, USDC and more. Live on crypto with 8,000+ products in 180+ countries.",
+    "Educational, non-commercial UI clone inspired by crypto gift-card storefronts. No purchases, payments, accounts, support or affiliation.",
   metadataBase: new URL("https://bitrefill-clone.vercel.app"),
   openGraph: {
-    title: "Bitrefill — Spend crypto, save big.",
+    title: "Refill Demo — Educational Crypto Storefront UI",
     description:
-      "Buy gift cards, mobile refills and eSIMs with crypto. 8,000+ products, 180+ countries.",
+      "A static Next.js demo for marketplace layout, catalog search and responsive UI patterns.",
     type: "website",
   },
 };

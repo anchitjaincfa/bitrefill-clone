@@ -8,12 +8,6 @@ export default function CategoryRail({ category }: { category: Category }) {
         <h2 className="text-2xl font-black tracking-tight text-ink sm:text-3xl">
           {category.title}
         </h2>
-        <a
-          href={category.href}
-          className="shrink-0 text-sm font-semibold text-brand hover:text-brand-dark"
-        >
-          See all →
-        </a>
       </div>
       {/* Horizontal rail on small screens, wrapping grid on large */}
       <div className="no-scrollbar -mx-4 flex snap-x gap-4 overflow-x-auto px-4 sm:mx-0 sm:grid sm:grid-cols-3 sm:overflow-visible sm:px-0 lg:grid-cols-4">
@@ -22,7 +16,7 @@ export default function CategoryRail({ category }: { category: Category }) {
             key={`${p.name}-${i}`}
             className="w-40 shrink-0 snap-start sm:w-auto"
           >
-            <ProductCard product={p} />
+            <ProductCard product={p} sectionId={category.id} />
           </div>
         ))}
       </div>

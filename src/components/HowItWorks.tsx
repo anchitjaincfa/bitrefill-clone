@@ -33,13 +33,13 @@ function StepIcon({ icon }: { icon: string }) {
 
 export default function HowItWorks() {
   return (
-    <section className="mx-auto max-w-6xl px-6 py-20 md:py-28">
+    <section id="how-it-works" className="mx-auto max-w-6xl scroll-mt-36 px-6 py-20 md:py-28">
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-3xl font-black text-ink md:text-4xl">
-          Living on crypto has never been easier
+          How this demo is structured
         </h2>
         <p className="mt-4 text-ink-soft">
-          Three simple steps to spend your crypto on everything you need, every day.
+          A static catalog, reusable cards and responsive sections for frontend review.
         </p>
       </div>
 

@@ -1,6 +1,6 @@
 export default function MobileApp() {
   return (
-    <section className="mx-auto max-w-7xl px-4 py-12 md:py-20">
+    <section id="app-preview" className="mx-auto max-w-7xl scroll-mt-36 px-4 py-12 md:py-20">
       <div
         className="relative overflow-hidden rounded-3xl p-8 md:p-12"
         style={{
@@ -27,17 +27,16 @@ export default function MobileApp() {
               Shop on the go
             </p>
             <h2 className="mt-3 text-3xl font-black leading-tight text-white md:text-5xl">
-              Get the Bitrefill app
+              Mobile app preview
             </h2>
             <p className="mt-4 max-w-md text-base text-white/80 md:text-lg">
-              Buy gift cards and refills anywhere, pay with crypto, manage
-              your orders on the go.
+              A static phone mockup showing how the same catalog patterns could
+              adapt to a compact mobile surface.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-4">
-              {/* App Store button */}
-              <a
-                href="#"
+              {/* iOS-style badge */}
+              <div
                 className="flex items-center gap-3 rounded-xl bg-black px-4 py-2.5 transition-colors hover:bg-black/80"
               >
                 <svg
@@ -49,17 +48,16 @@ export default function MobileApp() {
                 </svg>
                 <span className="flex flex-col leading-tight text-white">
                   <span className="text-[10px] leading-none text-white/70">
-                    Download on the
+                    Static
                   </span>
                   <span className="text-lg font-semibold leading-tight">
-                    App Store
+                    iOS mockup
                   </span>
                 </span>
-              </a>
+              </div>
 
-              {/* Google Play button */}
-              <a
-                href="#"
+              {/* Android-style badge */}
+              <div
                 className="flex items-center gap-3 rounded-xl bg-black px-4 py-2.5 transition-colors hover:bg-black/80"
               >
                 <svg
@@ -86,13 +84,13 @@ export default function MobileApp() {
                 </svg>
                 <span className="flex flex-col leading-tight text-white">
                   <span className="text-[10px] leading-none text-white/70">
-                    GET IT ON
+                    Static
                   </span>
                   <span className="text-lg font-semibold leading-tight">
-                    Google Play
+                    Android mockup
                   </span>
                 </span>
-              </a>
+              </div>
             </div>
           </div>
 

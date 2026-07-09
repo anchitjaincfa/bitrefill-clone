@@ -1,48 +1,47 @@
-const StarIcon = () => (
+const CheckIcon = () => (
   <svg
     viewBox="0 0 24 24"
-    fill="white"
-    className="h-3.5 w-3.5"
+    fill="none"
+    stroke="white"
+    strokeWidth="2.5"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="h-4 w-4"
     aria-hidden="true"
   >
-    <path d="M12 1.5l3.09 6.26 6.91 1-5 4.87 1.18 6.87L12 17.27l-6.18 3.23L7 13.63l-5-4.87 6.91-1L12 1.5z" />
+    <path d="m5 12 4 4L19 6" />
   </svg>
 );
 
-const TrustpilotStar = () => (
+const ScopeIcon = () => (
   <span
-    className="flex h-6 w-6 items-center justify-center rounded-[3px]"
-    style={{ backgroundColor: "#00b67a" }}
+    className="flex h-9 w-9 items-center justify-center rounded-full"
+    style={{ backgroundColor: "#e4322b" }}
   >
-    <StarIcon />
+    <CheckIcon />
   </span>
 );
 
 export default function TrustSection() {
   return (
-    <section className="w-full bg-white py-16 md:py-20">
+    <section id="about-demo" className="w-full scroll-mt-36 bg-white py-16 md:py-20">
       <div className="mx-auto max-w-5xl px-6">
         <h2 className="text-center text-2xl font-black text-ink md:text-3xl">
-          Trusted by millions living on crypto
+          Built as an educational UI clone
         </h2>
+        <p className="mx-auto mt-3 max-w-2xl text-center text-sm leading-6 text-muted">
+          This page demonstrates marketplace layout and interaction patterns.
+          It is not affiliated with Bitrefill and cannot sell, issue, deliver,
+          refund or support any product.
+        </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-10 md:mt-14 md:flex-row md:gap-12">
-          {/* Group 1: Trustpilot rating */}
           <div className="flex flex-col items-center gap-2 text-center">
             <div className="flex items-center gap-1.5">
-              <TrustpilotStar />
-              <span className="text-sm font-bold text-ink">Trustpilot</span>
+              <ScopeIcon />
             </div>
-            <div className="flex items-baseline gap-1">
-              <span className="text-5xl font-black text-ink">4.6</span>
-              <span className="text-lg font-semibold text-muted">/ 5</span>
-            </div>
-            <div className="flex items-center gap-1">
-              {Array.from({ length: 5 }).map((_, i) => (
-                <TrustpilotStar key={i} />
-              ))}
-            </div>
-            <p className="text-sm text-muted">Over 2,000 5-star reviews</p>
+            <span className="text-2xl font-black text-ink">Static catalog</span>
+            <p className="text-sm text-muted">All products and ratings are sample data</p>
           </div>
 
           <div
@@ -50,13 +49,11 @@ export default function TrustSection() {
             aria-hidden="true"
           />
 
-          {/* Group 2: Trusted since 2014 */}
           <div className="flex flex-col items-center gap-2 text-center">
-            <span className="text-2xl font-black text-ink">
-              Trusted since 2014
-            </span>
+            <ScopeIcon />
+            <span className="text-2xl font-black text-ink">No checkout</span>
             <p className="text-sm text-muted">
-              A decade of serving crypto users worldwide
+              There is no cart, payment flow or account system
             </p>
           </div>
 
@@ -65,11 +62,11 @@ export default function TrustSection() {
             aria-hidden="true"
           />
 
-          {/* Group 3: 50k payments */}
           <div className="flex flex-col items-center gap-2 text-center">
-            <span className="text-5xl font-black text-ink">50k</span>
+            <ScopeIcon />
+            <span className="text-2xl font-black text-ink">Original UI code</span>
             <p className="text-sm text-muted">
-              crypto payments processed every day
+              Tiles are recreated with CSS, SVG and text
             </p>
           </div>
         </div>

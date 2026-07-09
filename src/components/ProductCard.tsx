@@ -1,4 +1,5 @@
 import type { Product } from "@/lib/data";
+import { productAnchor } from "@/lib/data";
 
 function StarRating({ rating }: { rating?: number }) {
   if (rating === undefined) return null;
@@ -48,9 +49,15 @@ export function BrandTile({ product }: { product: Product }) {
 }
 
 /** Full product card: tile + name, price range and rating below. */
-export default function ProductCard({ product }: { product: Product }) {
+export default function ProductCard({
+  product,
+  sectionId,
+}: {
+  product: Product;
+  sectionId?: string;
+}) {
   return (
-    <a href="#" className="group block">
+    <article id={productAnchor(product.name, sectionId)} className="group scroll-mt-36">
       <div className="transition-transform duration-200 group-hover:-translate-y-1">
         <BrandTile product={product} />
       </div>
@@ -63,6 +70,6 @@ export default function ProductCard({ product }: { product: Product }) {
         </div>
         <StarRating rating={product.rating} />
       </div>
-    </a>
+    </article>
   );
 }

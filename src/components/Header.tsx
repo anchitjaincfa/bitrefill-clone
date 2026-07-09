@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
-import { navItems } from "@/lib/data";
+import Link from "next/link";
+import { type FormEvent, useMemo, useState } from "react";
+import { catalogSearchItems, navItems } from "@/lib/data";
 
 function SearchIcon() {
   return (
@@ -26,16 +27,6 @@ function HelpIcon() {
       <circle cx="10" cy="10" r="8" />
       <path d="M7.8 7.8a2.2 2.2 0 1 1 3.1 2c-.7.5-1.1.9-1.1 1.9" strokeLinecap="round" strokeLinejoin="round" />
       <circle cx="10" cy="14.5" r="0.6" fill="currentColor" stroke="none" />
-    </svg>
-  );
-}
-
-function CartIcon() {
-  return (
-    <svg viewBox="0 0 22 22" fill="none" stroke="currentColor" strokeWidth="1.7" className="h-5 w-5">
-      <path d="M2.5 3.5h2l1.6 10.6a1.8 1.8 0 0 0 1.8 1.5h8a1.8 1.8 0 0 0 1.8-1.5l1.1-6.6H5.4" strokeLinecap="round" strokeLinejoin="round" />
-      <circle cx="8.5" cy="19" r="1.1" />
-      <circle cx="16.5" cy="19" r="1.1" />
     </svg>
   );
 }
@@ -73,69 +64,121 @@ function HamburgerIcon({ open }: { open: boolean }) {
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [query, setQuery] = useState("");
+
+  const normalizedQuery = query.trim().toLowerCase();
+  const searchResults = useMemo(() => {
+    if (!normalizedQuery) return [];
+
+    return catalogSearchItems
+      .filter(({ product, sectionTitle }) => {
+        const haystack = `${product.name} ${product.label ?? ""} ${sectionTitle}`.toLowerCase();
+        return haystack.includes(normalizedQuery);
+      })
+      .slice(0, 6);
+  }, [normalizedQuery]);
+
+  const handleSearch = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const [firstResult] = searchResults;
+
+    if (firstResult) {
+      window.location.hash = firstResult.href.slice(1);
+      setQuery("");
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-white">
       {/* Promo strip */}
       <a
-        href="#"
+        id="disclaimer"
+        href="#about-demo"
         className="flex w-full items-center justify-center gap-1.5 bg-black px-4 py-2 text-center text-xs font-medium text-white transition-colors hover:bg-ink"
       >
-        <span>Skills, MCP, API — Connect your agents</span>
+        <span>Educational UI clone — no purchases, payments, affiliation or support</span>
         <ArrowRightIcon />
       </a>
 
       {/* Main bar */}
       <div className="mx-auto flex max-w-[1400px] items-center gap-4 px-4 py-3 sm:px-6 lg:gap-8 lg:px-10">
-        <a href="/" className="flex shrink-0 items-center gap-1 text-2xl font-black text-brand">
+        <Link href="/" className="flex shrink-0 items-center gap-1 text-2xl font-black text-brand">
           <span aria-hidden>⚡</span>
-          <span>Bitrefill</span>
-        </a>
+          <span>Refill Demo</span>
+        </Link>
 
         <div className="flex-1">
-          <div className="mx-auto flex max-w-xl items-center rounded-full border border-border bg-white pl-4 pr-1.5 transition-colors focus-within:border-ink-soft">
+          <form
+            role="search"
+            onSubmit={handleSearch}
+            className="relative mx-auto max-w-xl"
+          >
+            <label htmlFor="catalog-search" className="sr-only">
+              Search the demo catalog
+            </label>
+            <div className="flex items-center rounded-full border border-border bg-white pl-4 pr-1.5 transition-colors focus-within:border-ink-soft">
             <input
+              id="catalog-search"
               type="text"
-              placeholder="Search for products or phone number"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Search the demo catalog"
+              autoComplete="off"
               className="w-full flex-1 bg-transparent py-2.5 text-sm text-ink placeholder:text-muted focus:outline-none"
             />
             <button
-              type="button"
+              type="submit"
               aria-label="Search"
+              disabled={!searchResults.length}
               className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-surface text-ink transition-colors hover:bg-brand hover:text-white"
             >
               <SearchIcon />
             </button>
           </div>
+            {normalizedQuery ? (
+              <div className="absolute left-0 right-0 top-full mt-2 overflow-hidden rounded-2xl border border-border bg-white shadow-xl">
+                {searchResults.length ? (
+                  <ul className="py-2">
+                    {searchResults.map((item) => (
+                      <li key={`${item.sectionId}-${item.product.name}`}>
+                        <a
+                          href={item.href}
+                          onClick={() => setQuery("")}
+                          className="block px-4 py-2.5 text-sm transition-colors hover:bg-surface"
+                        >
+                          <span className="block font-semibold text-ink">
+                            {item.product.name}
+                          </span>
+                          <span className="text-xs text-muted">
+                            {item.sectionTitle}
+                          </span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="px-4 py-3 text-sm text-muted">
+                    No matching demo products.
+                  </p>
+                )}
+              </div>
+            ) : null}
+          </form>
         </div>
 
         {/* Right cluster (desktop) */}
         <div className="hidden shrink-0 items-center gap-5 lg:flex">
-          <a href="#help" className="flex items-center gap-1.5 text-sm font-semibold text-ink transition-colors hover:text-brand">
+          <a href="#faq" className="flex items-center gap-1.5 text-sm font-semibold text-ink transition-colors hover:text-brand">
             <HelpIcon />
-            Help
+            FAQ
           </a>
-          <button
-            type="button"
-            className="flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-sm font-semibold text-ink transition-colors hover:border-ink-soft"
-          >
-            <span aria-hidden>🇺🇸</span>
-            EN / USD
-          </button>
-          <button
-            type="button"
-            className="flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-sm font-semibold text-ink transition-colors hover:border-ink-soft"
-          >
+          <span className="flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-sm font-semibold text-ink">
             <span
               aria-hidden
               className="h-4 w-4 rounded-full bg-gradient-to-br from-amber-400 to-brand"
             />
-            $0
-          </button>
-          <a href="#cart" aria-label="Cart" className="flex items-center gap-1.5 text-sm font-semibold text-ink transition-colors hover:text-brand">
-            <CartIcon />
-            <span className="hidden xl:inline">Cart</span>
-          </a>
+            Demo site
+          </span>
         </div>
 
         {/* Mobile trigger */}
@@ -164,13 +207,13 @@ export default function Header() {
           ))}
         </nav>
         <div className="flex items-center gap-6">
-          <a href="#download" className="flex items-center gap-1.5 text-sm font-semibold text-ink transition-colors hover:text-brand">
+          <a href="#app-preview" className="flex items-center gap-1.5 text-sm font-semibold text-ink transition-colors hover:text-brand">
             <DownloadIcon />
-            Download the app
+            App preview
           </a>
-          <a href="#invite" className="flex items-center gap-1.5 text-sm font-bold text-brand transition-colors hover:text-brand-dark">
+          <a href="#about-demo" className="flex items-center gap-1.5 text-sm font-bold text-brand transition-colors hover:text-brand-dark">
             <GiftIcon />
-            Invite a Friend
+            About demo
           </a>
         </div>
       </div>
@@ -190,28 +233,28 @@ export default function Header() {
               </a>
             ))}
             <a
-              href="#help"
+              href="#faq"
               onClick={() => setMenuOpen(false)}
               className="flex items-center gap-1.5 border-b border-border py-3 text-sm font-semibold text-ink transition-colors hover:text-brand"
             >
               <HelpIcon />
-              Help
+              FAQ
             </a>
             <a
-              href="#download"
+              href="#app-preview"
               onClick={() => setMenuOpen(false)}
               className="flex items-center gap-1.5 border-b border-border py-3 text-sm font-semibold text-ink transition-colors hover:text-brand"
             >
               <DownloadIcon />
-              Download the app
+              App preview
             </a>
             <a
-              href="#invite"
+              href="#about-demo"
               onClick={() => setMenuOpen(false)}
               className="flex items-center gap-1.5 py-3 text-sm font-bold text-brand transition-colors hover:text-brand-dark"
             >
               <GiftIcon />
-              Invite a Friend
+              About demo
             </a>
           </nav>
         </div>
